@@ -56,14 +56,13 @@ const Login = () => {
       );
       console.log(data);
       const { success, message } = data;
-      if (success) {
-        handleSuccess(message);
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
-      } else {
-        handleError(message);
-      }
+    if (success) {
+  handleSuccess(message);
+  navigate("/"); // Navigate to the home page
+} else {
+  handleError(message);
+}
+
     } catch (error) {
       console.log(error);
     }
