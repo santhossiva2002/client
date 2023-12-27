@@ -48,7 +48,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://server-qm6q.onrender.com/login",
+      "https://server-qm6q.onrender.com/login",
         {
           ...inputValue,
         },
@@ -56,13 +56,14 @@ const Login = () => {
       );
       console.log(data);
       const { success, message } = data;
-    if (success) {
-  handleSuccess(message);
-  navigate("/"); // Navigate to the home page
-} else {
-  handleError(message);
-}
-
+      if (success) {
+        handleSuccess(message);
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      } else {
+        handleError(message);
+      }
     } catch (error) {
       console.log(error);
     }
