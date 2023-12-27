@@ -22,7 +22,7 @@ const Home = () => {
 
       try {
         const { data } = await axios.post(
-          "https://server-qm6q.onrender.com",  // Update this URL to your backend verification endpoint
+           "https://server-qm6q.onrender.com",
           {},
           { withCredentials: true }
         );
@@ -42,7 +42,7 @@ const Home = () => {
     };
 
     verifyCookie();
-  }, [cookies.token, navigate, removeCookie]);
+  }, []); // Empty dependency array to run only once
 
   const Logout = () => {
     removeCookie("token");
