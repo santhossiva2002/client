@@ -59,8 +59,9 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/");
-        }, 1000);
+  console.log("Redirecting to home page...");
+  navigate("/");
+}, 1000);
       } else {
         handleError(message);
       }
