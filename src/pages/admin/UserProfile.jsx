@@ -11,7 +11,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     // Fetch users from the API
-    fetch('http://localhost:4000/users/')
+    fetch('https://server-qm6q.onrender.com/users/')
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => console.error('Error fetching users:', error));
@@ -25,7 +25,7 @@ const UserProfile = () => {
 
   const handleSaveClick = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/users/${editingUserId}`, {
+      const response = await fetch(`https://server-qm6q.onrender.com/users/${editingUserId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const UserProfile = () => {
 
   const handleDeleteClick = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:4000/users/${userId}`, {
+      const response = await fetch(`https://server-qm6q.onrender.com/users/${userId}`, {
         method: 'DELETE',
       });
 
