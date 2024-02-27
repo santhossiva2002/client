@@ -16,7 +16,7 @@ const FeedbackForm = () => {
 
   const fetchFeedbackData = async () => {
     try {
-      const response = await fetch('http://localhost:4000/feed/getFeedback');
+      const response = await fetch('https://server-qm6q.onrender.com/feed/getFeedback');
       if (response.ok) {
         const data = await response.json();
         setFeedbackData(data);
@@ -30,7 +30,7 @@ const FeedbackForm = () => {
 
   const handleDoneClick = async (email) => {
     try {
-      const response = await fetch(`http://localhost:4000/feed/deleteFeedback/${email}`, {
+      const response = await fetch(`https://server-qm6q.onrender.com/feed/deleteFeedback/${email}`, {
         method: 'DELETE',
       });
 
