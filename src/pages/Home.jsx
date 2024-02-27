@@ -15,10 +15,13 @@ const Home = () => {
 
   useEffect(() => {
     const verifyCookie = async () => {
-      if (!cookies.token) {
-        navigate("/login");
-        return;
-      }
+      console.log("Checking authentication...");
+if (!cookies.token) {
+  console.log("Redirecting to login...");
+  navigate("/login");
+  return;
+}
+
 
       try {
         const { data } = await axios.post(
