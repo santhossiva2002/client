@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
@@ -12,6 +13,7 @@ const Login = () => {
   const { email, password } = inputValue;
   const [showAdminPrompt, setShowAdminPrompt] = useState(false);
   const [adminPromptValue, setAdminPromptValue] = useState("");
+  const [cookies, setCookie] = useCookies(["token"]);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -48,24 +50,23 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-      "https://server-qm6q.onrender.com/login",
+        "https://server-qm6q.onrender.com/login",
         {
           ...inputValue,
         },
         { withCredentials: true }
       );
       console.log(data);
-      const { success, message } = data;
+      const { success, message, token } = data;
       if (success) {
         handleSuccess(message);
-        setTimeout(() => {
-  console.log("Redirecting to home page...");
-  navigate("/");
-}, 1000);
+        // Set the token cookie
+        setCookie("token", token, { path: "/", sameSite: "None", secure: true });
+        // Redirect to home page
+        navigate("/");
       } else {
         handleError(message);
       }
-
     } catch (error) {
       console.log(error);
     }
