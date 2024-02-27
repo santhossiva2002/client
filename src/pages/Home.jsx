@@ -15,6 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     const verifyCookie = async () => {
+      console.log("Token in cookies:", cookies.token); 
       console.log("Checking authentication...");
 if (!cookies.token) {
   console.log("Redirecting to login...");
