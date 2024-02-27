@@ -46,36 +46,43 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post(
-        "https://server-qm6q.onrender.com/login",
-        {
-          ...inputValue,
-        },
-        { withCredentials: true }
-      );
-      console.log(data);
-      const { success, message, token } = data;
-      if (success) {
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const { data } = await axios.post(
+      "https://server-qm6q.onrender.com/login",
+      {
+        ...inputValue,
+      },
+      { withCredentials: true }
+    );
+    console.log(data);
+    const { success, message, token } = data;
+    if (success) {
+      if (token) {
+        // Token is present, handle success
         handleSuccess(message);
-        // Set the token cookie
-        setCookie("token", token, { path: "/", sameSite: "None", secure: true });
-        // Redirect to home page
-        navigate("/");
+        setTimeout(() => {
+          console.log("Redirecting to home page...");
+          navigate("/");
+        }, 1000);
       } else {
-        handleError(message);
+        // Token is undefined or null, handle accordingly
+        handleError("Token not received. Please try again.");
       }
-    } catch (error) {
-      console.log(error);
+    } else {
+      handleError(message);
     }
-    setInputValue({
-      ...inputValue,
-      email: "",
-      password: "",
-    });
-  };
+  } catch (error) {
+    console.log(error);
+  }
+  setInputValue({
+    ...inputValue,
+    email: "",
+    password: "",
+  });
+};
+
 
   return (
     <div className="form_container">
