@@ -22,13 +22,13 @@ const Admin = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseUser = await fetch('http://localhost:4000/get/getCountUser');
+        const responseUser = await fetch('https://server-qm6q.onrender.com/get/getCountUser');
         const dataUser = await responseUser.json();
 
-        const responseCount = await fetch('http://localhost:4000/api/getCount');
+        const responseCount = await fetch('https://server-qm6q.onrender.com/api/getCount');
         const dataCount = await responseCount.json();
 
-        const responseFeedback = await fetch('http://localhost:4000/feed/countFeedback');
+        const responseFeedback = await fetch('https://server-qm6q.onrender.com/feed/countFeedback');
         const dataFeedback = await responseFeedback.json();
 
         setCounts({
