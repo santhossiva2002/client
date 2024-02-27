@@ -10,7 +10,7 @@ const AirSch = () => {
 
   useEffect(() => {
     // Fetch schedules from the API
-    fetch('http://localhost:4000/api/getAll')
+    fetch('https://server-qm6q.onrender.com/api/getAll')
       .then((response) => response.json())
       .then((data) => setSchedules(data))
       .catch((error) => console.error('Error fetching schedules:', error));
@@ -28,7 +28,7 @@ const AirSch = () => {
 
         console.log('Sending update request with data:', fieldsWithoutId);
 
-        const response = await fetch(`http://localhost:4000/api/update/${editingScheduleId}`, {
+        const response = await fetch(`https://server-qm6q.onrender.com/api/update/${editingScheduleId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const AirSch = () => {
 
   const handleDeleteClick = async (scheduleId) => {
     try {
-      const response = await fetch(`http://localhost:4000/api/delete/${scheduleId}`, {
+      const response = await fetch(`https://server-qm6q.onrender.com/api/delete/${scheduleId}`, {
         method: 'DELETE',
       });
 
